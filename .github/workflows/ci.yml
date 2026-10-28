@@ -33,7 +33,7 @@ jobs:
             --cov=blind_window --cov-report=json --cov-fail-under=95
       - name: the published test count equals what this runner collects
         run: |
-          collected=$(python -m pytest --collect-only -q | grep -c '::')
+          collected=$(python -m pytest --collect-only -q --override-ini addopts= | grep -c '::')
           published=$(python -c "import json; print(json.load(open('docs/metrics.json'))['metrics']['tests_total'])")
           echo "collected=$collected published=$published"
           test "$collected" = "$published"
