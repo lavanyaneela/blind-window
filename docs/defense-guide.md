@@ -47,7 +47,7 @@ instead of guessing, and that refusal is the product.
 | **PSI of 1.30** with zero harm, **losing 4.50 points** with zero shift | the two corners of the same grid |
 | **precision of 20.0%**, **recall of 50.0%** at a **prevalence of 10%** | E4: periods at realistic base rates, half of real regressions also move covariates (the generous assumption); silent catch rate is only bounded, **below 22.1%**, because a measured zero is a resolution floor, not a zero |
 | E5 totals and the **1,305 degraded predictions avoided** per wasted retrain | sixty streams, three policies on identical data, best-case retrains; the exchange rate is scheduled's exposure saving over label-confirmed divided by its **150 wasted retrains** |
-| **147 tests**, **98.5% line coverage** | read from the junit and coverage JSON artifacts by the collector, never from a progress line |
+| **150 tests**, **98.5% line coverage** | read from the junit and coverage JSON artifacts by the collector, never from a progress line |
 
 ## The war story to tell
 

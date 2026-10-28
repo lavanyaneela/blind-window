@@ -160,7 +160,7 @@
     "silent_catch_upper_pct": 22.092219194555586,
     "sql_queries_per_dialect": 6,
     "target_drop_pts": 2.0,
-    "tests_total": 147,
+    "tests_total": 150,
     "true_regression_prevalence_pct": 10.0
   },
   "note": "every value produced by running the suite and the experiments; see tools/",
@@ -198,7 +198,7 @@
     "silent_catch_upper_pct": "22.1",
     "sql_queries_per_dialect": "6",
     "target_drop_pts": "2",
-    "tests_total": "147",
+    "tests_total": "150",
     "true_regression_prevalence_pct": "10"
   }
 }

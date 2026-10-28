@@ -18,7 +18,7 @@ On the committed default stream (800 predictions per day, lognormal label delay 
 
 The input-side alarm is not the answer. Across the E1 grid, worst-feature PSI shows a **correlation of -0.001** with realized accuracy loss. A stream can show a **PSI of 1.30** while losing nothing, and a stream with no detectable input movement can be **losing 4.50 points**. At an assumed **prevalence of 10%**, the arithmetic puts the alarm at a **precision of 20.0%** and a **recall of 50.0%**.
 
-Credibility line: **147 tests**, **98.5% line coverage**, **6 queries per dialect**: DuckDB executes on every verify, Postgres on every CI run against a real server, and every figure in this document is re-measured by `make verify`. Breaking any number here fails the build, and CI proves the checker by breaking one on purpose.
+Credibility line: **150 tests**, **98.5% line coverage**, **6 queries per dialect**: DuckDB executes on every verify, Postgres on every CI run against a real server, and every figure in this document is re-measured by `make verify`. Breaking any number here fails the build, and CI proves the checker by breaking one on purpose.
 
 ## Quickstart
 
@@ -108,7 +108,7 @@ src/blind_window/      clock, scenario, simulator, detectors, power core, store,
 sql/duckdb/ sql/postgres/   the six committed queries, one file per dialect
 experiments/           e1 to e5 plus run_all.py
 tools/                 collect_metrics, check_numbers, check_durations, prove_checker, evidence
-tests/                 147 tests named as sentences
+tests/                 150 tests named as sentences
 fixtures/scenarios/    the committed default stream
 docs/                  adr/, experiments/ (committed measurements), evidence/, metrics.json
 ```
