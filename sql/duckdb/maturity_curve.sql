@@ -7,7 +7,8 @@ WITH cohort AS (
     FROM predictions p
     LEFT JOIN labels l
         ON p.request_id = l.request_id AND l.label_day <= $asof
-    WHERE p.ts_day >= $cohort_start AND p.ts_day < $cohort_end
+    WHERE p.ts_day >= $cohort_start
+      AND p.ts_day < LEAST(CAST($cohort_end AS DOUBLE), $asof)
 ),
 aged AS (
     SELECT CAST(FLOOR(label_day - ts_day) AS INTEGER) AS age_days

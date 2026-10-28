@@ -199,3 +199,17 @@ def test_a_fractional_asof_never_counts_a_label_from_the_future(store):
     _, exp = store.run("blind_exposure", {"onset": 10.0, "asof": asof})
     true_served = int(((arrays["ts_day"] >= 10.0) & (arrays["ts_day"] < asof)).sum())
     assert exp[-1][1] == true_served and exp[-1][2] == true_count
+
+
+def test_the_maturity_cohort_never_counts_predictions_not_yet_made(store):
+    """The clamp philosophy, propagated: with cohort_end past the as-of
+    instant, the denominator holds only predictions that exist at the ask."""
+    _, rows = store.run(
+        "maturity_curve", {"cohort_start": 12.0, "cohort_end": 20.0, "asof": 14.5}
+    )
+    arrays = store.arrays()
+    cohort = int(((arrays["ts_day"] >= 12.0) & (arrays["ts_day"] < 14.5)).sum())
+    labeled = sum(r[1] for r in rows)
+    assert labeled <= cohort
+    if rows:
+        assert rows[-1][2] == pytest.approx(labeled / cohort)

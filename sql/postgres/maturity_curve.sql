@@ -7,7 +7,8 @@ WITH cohort AS (
     FROM predictions p
     LEFT JOIN labels l
         ON p.request_id = l.request_id AND l.label_day <= %(asof)s
-    WHERE p.ts_day >= %(cohort_start)s AND p.ts_day < %(cohort_end)s
+    WHERE p.ts_day >= %(cohort_start)s
+      AND p.ts_day < LEAST(%(cohort_end)s::double precision, %(asof)s)
 ),
 aged AS (
     SELECT FLOOR(label_day - ts_day)::integer AS age_days

@@ -35,12 +35,12 @@ if not DSN:  # pragma: no cover - CI sets the DSN; local runs never collect this
 
 ROOT = Path(__file__).resolve().parents[1]
 PARAMS = {
-    "labeled_counts_by_day": {"onset": 15.0, "asof": 35.0},
+    "labeled_counts_by_day": {"onset": 15.0, "asof": 34.5},
     "windowed_accuracy_asof": {"asof": 35.0},
     "label_latency_deciles": {"asof": 35.0},
-    "blind_exposure": {"onset": 15.0, "asof": 35.0},
+    "blind_exposure": {"onset": 15.0, "asof": 34.5},
     "version_windows": {"asof": 35.0},
-    "maturity_curve": {"cohort_start": 0.0, "cohort_end": 10.0, "asof": 35.0},
+    "maturity_curve": {"cohort_start": 0.0, "cohort_end": 10.0, "asof": 34.5},
 }
 
 
