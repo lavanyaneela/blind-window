@@ -101,7 +101,7 @@ class Scenario:
             d.validate(self.horizon_days)
 
     @staticmethod
-    def from_dict(raw: dict) -> "Scenario":
+    def from_dict(raw: dict) -> Scenario:
         try:
             delay = DelaySpec(**raw["delay"])
             drifts = tuple(DriftEvent(**d) for d in raw.get("drifts", []))
@@ -120,7 +120,7 @@ class Scenario:
         return sc
 
     @staticmethod
-    def load(path: str | Path) -> "Scenario":
+    def load(path: str | Path) -> Scenario:
         p = Path(path)
         if not p.exists():
             raise ScenarioError(f"scenario file not found: {p}")

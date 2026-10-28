@@ -53,7 +53,7 @@ class Geometry:
     u: np.ndarray
 
     @staticmethod
-    def build(n_features: int) -> "Geometry":
+    def build(n_features: int) -> Geometry:
         w = _unit(np.ones(n_features))
         v_raw = np.zeros(n_features)
         v_raw[0] = 2.0

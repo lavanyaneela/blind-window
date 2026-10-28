@@ -44,6 +44,7 @@ STRIP_PATTERNS = (
     re.compile(r"\bADR-\d+\b"),  # document ids
     re.compile(r"\bpostgres:\d+\b"),  # service container pins
     re.compile(r"\bPython 3\.\d+\b"),  # interpreter versions in prose
+    re.compile(r"\b\d{1,2}:\d{2}\b"),  # clock times
 )
 
 
@@ -122,7 +123,7 @@ def main() -> int:
         prose = strip_uncheckable(full)
         # Re-find anchor spans on the stripped prose so covered regions align.
         prose_covered: list[tuple[int, int]] = []
-        for metric, alist in anchors.items():
+        for alist in anchors.values():
             for template in alist:
                 for m in anchor_regex(template).finditer(prose):
                     prose_covered.append(m.span())

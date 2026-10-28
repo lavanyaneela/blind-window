@@ -28,7 +28,7 @@ METRICS: dict[str, dict] = {
     # default scenario configuration (declared inputs, still machine-read)
     "label_delay_median_days": {
         "fmt": "{:g}", "round": "nearest",
-        "anchors": ["median delay of {} days", "median label delay of {} days"],
+        "anchors": ["median delay {} days", "delay of {} days"],
     },
     "default_rate_per_day": {
         "fmt": "{:g}", "round": "nearest", "anchors": ["{} predictions per day"],
@@ -50,7 +50,7 @@ METRICS: dict[str, dict] = {
         "anchors": ["{} predictions before", "serves {} predictions"],
     },
     "answerable_day": {
-        "fmt": "{:g}", "round": "nearest", "anchors": ["until day {}", "day {} at the earliest"],
+        "fmt": "{:g}", "round": "nearest", "anchors": ["until day {}", "answerable on day {}"],
     },
     "rate_16x_window_ratio": {
         "fmt": "{:.2f}", "round": "floor",
@@ -59,10 +59,10 @@ METRICS: dict[str, dict] = {
     # E3
     "mdd_day7_pts": {
         "fmt": "{:.2f}", "round": "floor",
-        "anchors": ["{} points at day 7", "smaller than {} points"],
+        "anchors": ["{} points (day 7)", "smaller than {} points"],
     },
     "mdd_day30_pts": {
-        "fmt": "{:.2f}", "round": "floor", "anchors": ["{} points at day 30"],
+        "fmt": "{:.2f}", "round": "floor", "anchors": ["{} points (day 30)"],
     },
     "early_label_bias_coupled_pts": {
         "fmt": "{:.2f}", "round": "nearest",

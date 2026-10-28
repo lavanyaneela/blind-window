@@ -17,7 +17,6 @@ from __future__ import annotations
 import json
 import math
 
-import numpy as np
 from common import build, write
 from scipy import stats
 

@@ -85,7 +85,8 @@ def mmd(
     _check(reference, window)
     if reference.ndim != 2:
         raise DetectorError("mmd is multivariate; pass the feature matrix")
-    ref = reference[rng.choice(reference.shape[0], min(max_rows, reference.shape[0]), replace=False)]
+    n_ref = min(max_rows, reference.shape[0])
+    ref = reference[rng.choice(reference.shape[0], n_ref, replace=False)]
     win = window[rng.choice(window.shape[0], min(max_rows, window.shape[0]), replace=False)]
     pooled = np.vstack([ref, win])
     sq = np.sum(pooled**2, axis=1)
