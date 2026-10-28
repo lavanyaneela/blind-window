@@ -1,0 +1,4 @@
+*.sql linguist-detectable=true
+*.sql linguist-language=SQL
+*.yml linguist-detectable=true
+Makefile linguist-detectable=true
