@@ -9,9 +9,11 @@ per_day AS (
     SELECT
         days.day,
         (SELECT COUNT(*) FROM predictions p
-         WHERE p.ts_day >= $onset AND p.ts_day < days.day) AS served_cumulative,
+         WHERE p.ts_day >= $onset
+           AND p.ts_day < LEAST(CAST(days.day AS DOUBLE), $asof)) AS served_cumulative,
         (SELECT COUNT(*) FROM predictions p JOIN labels l USING (request_id)
-         WHERE p.ts_day >= $onset AND l.label_day <= days.day) AS labeled_cumulative
+         WHERE p.ts_day >= $onset
+           AND l.label_day <= LEAST(CAST(days.day AS DOUBLE), $asof)) AS labeled_cumulative
     FROM days
 )
 SELECT

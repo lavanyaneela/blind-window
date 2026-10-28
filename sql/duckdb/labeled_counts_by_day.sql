@@ -7,7 +7,7 @@ SELECT
         SELECT COUNT(*)
         FROM predictions p
         JOIN labels l USING (request_id)
-        WHERE p.ts_day >= $onset AND l.label_day <= d.range
+        WHERE p.ts_day >= $onset AND l.label_day <= LEAST(CAST(d.range AS DOUBLE), $asof)
     ) AS n_labeled_post_onset
 FROM range(CAST(CEIL($onset) AS BIGINT), CAST(CEIL($asof) AS BIGINT) + 1) AS d
 ORDER BY day

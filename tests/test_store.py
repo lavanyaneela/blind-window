@@ -182,3 +182,20 @@ def test_feature_matrix_returns_the_requested_slice(store, harm_stream):
     mat = store.feature_matrix(0.0, 5.0)
     expected = int(np.count_nonzero(harm_stream.ts_day < 5.0))
     assert mat.shape == (expected, 6)
+
+
+def test_a_fractional_asof_never_counts_a_label_from_the_future(store):
+    """Audit finding: the day grid's last row is CEIL(asof), and the original
+    predicate compared against the grid day, so asking at day 34.5 counted
+    labels arriving in (34.5, 35]. Both queries now clamp to the as-of
+    instant; this pins the leak at a fractional ask."""
+    asof = 20.5
+    _, rows = store.run("labeled_counts_by_day", {"onset": 10.0, "asof": asof})
+    arrays = store.arrays()
+    true_count = int(
+        ((arrays["ts_day"] >= 10.0) & (arrays["label_day"] <= asof)).sum()
+    )
+    assert rows[-1][1] == true_count
+    _, exp = store.run("blind_exposure", {"onset": 10.0, "asof": asof})
+    true_served = int(((arrays["ts_day"] >= 10.0) & (arrays["ts_day"] < asof)).sum())
+    assert exp[-1][1] == true_served and exp[-1][2] == true_count
