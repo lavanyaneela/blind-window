@@ -1,0 +1,12 @@
+{
+  "name": "default",
+  "seed": 20260107,
+  "horizon_days": 120,
+  "rate_per_day": 800,
+  "n_features": 6,
+  "delay": {"kind": "lognormal", "median_days": 21, "sigma": 0.8},
+  "drifts": [
+    {"kind": "input_shift", "onset_day": 18, "magnitude": 1.0},
+    {"kind": "concept_shift", "onset_day": 30, "magnitude": 4.0}
+  ]
+}

@@ -30,10 +30,10 @@ verify: lint test experiments receipts
 
 demo:
 	@$(PY) -m blind_window.cli simulate --scenario fixtures/scenarios/default.json --db runs/demo.duckdb --force
-	@$(PY) -m blind_window.cli check --db runs/demo.duckdb --asof-day 33 --drop 0.05; echo "blind-window exit code: $$?"
+	@$(PY) -m blind_window.cli check --db runs/demo.duckdb --asof-day 44 --drop 2.0; echo "blind-window exit code: $$?"
 
 report:
-	@$(PY) -m blind_window.cli report --db runs/demo.duckdb --asof-day 33 --drop 0.05 || true
+	@$(PY) -m blind_window.cli report --db runs/demo.duckdb --asof-day 44 --drop 2.0 || true
 
 # Replace the placeholder GitHub handle everywhere it appears, then insert the
 # CI badge (a badge pointing at a repo that does not exist renders "unknown").
