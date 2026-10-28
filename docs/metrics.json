@@ -24,6 +24,15 @@
       "{} predictions before",
       "serves {} predictions"
     ],
+    "bug_cohort_labeled": [
+      "only {} labels arrived"
+    ],
+    "bug_phantom_drop_pts": [
+      "{} point phantom"
+    ],
+    "bug_reported_acc": [
+      "reported {} accuracy"
+    ],
     "coverage_line_pct": [
       "{}% line coverage"
     ],
@@ -125,6 +134,9 @@
     "answerable_day": 50.5,
     "blind_window_days": 20.5,
     "blind_window_predictions": 16261,
+    "bug_cohort_labeled": 28,
+    "bug_phantom_drop_pts": 55.53135888501741,
+    "bug_reported_acc": 0.051829268292682924,
     "coverage_line_pct": 98.38274932614556,
     "default_rate_per_day": 800,
     "drift_perf_correlation": -0.00142917820563066,
@@ -160,6 +172,9 @@
     "answerable_day": "50.5",
     "blind_window_days": "20.5",
     "blind_window_predictions": "16,261",
+    "bug_cohort_labeled": "28",
+    "bug_phantom_drop_pts": "55.5",
+    "bug_reported_acc": "0.0518",
     "coverage_line_pct": "98.3",
     "default_rate_per_day": "800",
     "drift_perf_correlation": "-0.001",

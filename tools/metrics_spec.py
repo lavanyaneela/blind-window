@@ -125,6 +125,16 @@ METRICS: dict[str, dict] = {
     "e5_predictions_per_retrain": {
         "fmt": "{:,d}", "round": "floor", "anchors": ["{} degraded predictions avoided"],
     },
+    # the war story, re-measured on its committed scenario
+    "bug_reported_acc": {
+        "fmt": "{:.4f}", "round": "nearest", "anchors": ["reported {} accuracy"],
+    },
+    "bug_cohort_labeled": {
+        "fmt": "{:d}", "round": "nearest", "anchors": ["only {} labels arrived"],
+    },
+    "bug_phantom_drop_pts": {
+        "fmt": "{:.1f}", "round": "floor", "anchors": ["{} point phantom"],
+    },
     # structure
     "sql_queries_per_dialect": {
         "fmt": "{:d}", "round": "nearest", "anchors": ["{} queries per dialect"],
@@ -150,8 +160,8 @@ EXEMPT_NUMBERS = (
     "0.2",    # the conventional PSI firing threshold
     "95",     # the coverage floor CI enforces, a policy not a measurement
     "100",    # the E5 horizon in days, a design input
-    "0",      # exit code zero, referenced in prose next to its meaning
     "7",      # the day-7 label of the E3 checkpoints, a design input
+    "18",     # the committed fixture's harmless-shift onset day, a design input
     "1",      # exit code one, same
     "3",      # exit code three, same
 )

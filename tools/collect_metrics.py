@@ -99,6 +99,10 @@ def main() -> int:
         "e5_predictions_per_retrain": (exposed_label - exposed_sched) / max(wasted_sched, 1),
         "sql_queries_per_dialect": len(sql_duck),
     }
+    bug_acc, bug_n, bug_phantom = measure_war_story()
+    values["bug_reported_acc"] = bug_acc
+    values["bug_cohort_labeled"] = bug_n
+    values["bug_phantom_drop_pts"] = bug_phantom
     missing = set(METRICS) - set(values)
     extra = set(values) - set(METRICS)
     if missing or extra:
@@ -113,6 +117,36 @@ def main() -> int:
     OUT.write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n")
     print(f"collected {len(values)} metrics -> {OUT.relative_to(ROOT)}")
     return 0
+
+
+def measure_war_story() -> tuple[float, int, float]:
+    """Re-measure the as-of accuracy bug on its committed scenario: load the
+    war-story stream, run the RECONSTRUCTED broken query (label match inside
+    the CASE) at the day it was caught, and read the day-30 cohort row. The
+    phantom drop is the healthy labeled-only accuracy minus what the broken
+    query reported. The numbers in the fix commit are thereby re-measurable."""
+    import tempfile
+
+    import numpy as np
+
+    from blind_window.scenario import Scenario
+    from blind_window.simulate.stream import generate
+    from blind_window.store.log_store import LogStore, read_query
+
+    sc = Scenario.load(ROOT / "fixtures/scenarios/warstory.json")
+    with tempfile.TemporaryDirectory() as td:
+        store = LogStore(Path(td) / "w.duckdb")
+        store.load_stream(generate(sc))
+        broken_sql = read_query("duckdb", "windowed_accuracy_asof").replace(
+            "CASE WHEN l.request_id IS NULL THEN NULL\n             WHEN", "CASE WHEN"
+        )
+        rows = store.conn.execute(broken_sql, {"asof": 35.0}).fetchall()
+        day30 = next(r for r in rows if r[0] == 30)
+        a = store.arrays()
+        m = (a["ts_day"] >= 30) & (a["ts_day"] < 31) & (a["label_day"] <= 35.0)
+        healthy = float(np.mean(a["correct"][m]))
+        store.close()
+    return float(day30[2]), int(day30[1]), (healthy - float(day30[2])) * 100.0
 
 
 def count_default_predictions() -> int:

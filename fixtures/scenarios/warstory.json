@@ -1,0 +1,9 @@
+{
+  "name": "warstory",
+  "seed": 7,
+  "horizon_days": 40,
+  "rate_per_day": 300,
+  "n_features": 6,
+  "delay": {"kind": "lognormal", "median_days": 10, "sigma": 0.6},
+  "drifts": [{"kind": "concept_shift", "onset_day": 15, "magnitude": 5.0}]
+}

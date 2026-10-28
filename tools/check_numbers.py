@@ -45,6 +45,8 @@ STRIP_PATTERNS = (
     re.compile(r"\bpostgres:\d+\b"),  # service container pins
     re.compile(r"\bPython 3\.\d+\b"),  # interpreter versions in prose
     re.compile(r"\b\d{1,2}:\d{2}\b"),  # clock times
+    re.compile(r"(?m)^\s{0,3}\d{1,2}\.\s"),  # ordered-list markers
+    re.compile(r"\*\*\d{1,2}\.\s"),  # bold ordered-list markers
 )
 
 
