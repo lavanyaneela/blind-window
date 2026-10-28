@@ -46,4 +46,4 @@ Keep a Changelog; versions are annotated git tags.
 
 ### Fixed
 - The as-of accuracy query counted unlabeled predictions as wrong, convicting
-  healthy fresh cohorts; see the fix commit and the war story in the README.
+  fresh cohorts; see the fix commit and the war story in the README.

@@ -10,12 +10,13 @@ them on identical streams over a 100 day horizon, in the two units an operator
 pays: predictions served while degraded, and retrains fired with nothing to
 fix. Every policy was granted a best-case retrain (the model realigns with the
 current concept on the retrain day), so the measured differences belong to the
-triggers alone. Three further grants are stated here because each flatters a
+triggers alone. Two further grants are stated here because each flatters a
 policy this ADR judges: the label-confirmed policy was handed the true onset
-as its hypothesis; the drift policy's alarm latches after one retrain, since
-its reference-window comparison would otherwise re-fire daily against a
-persisting shift and bill the same alarm every day; and the schedule was run
-at a cadence chosen in round numbers rather than tuned against it.
+as its hypothesis, and the drift policy's alarm latches after one retrain,
+since its reference-window comparison would otherwise re-fire daily against a
+persisting shift and bill the same alarm every day. One disclosure that is
+not a grant: the schedule's cadence is a round number, not tuned against this
+grid, so its row is representative rather than its best achievable.
 
 ## Decision
 

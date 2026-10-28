@@ -133,7 +133,7 @@ Exit codes, and the distinction is the deliverable:
 | DuckDB | the default engine for the append-only log | time-windowed SQL over two event streams is the natural shape; runs in-process, so `make verify` stays offline |
 | PostgreSQL | the second dialect, hand-written per query | the parity CI job executes all six queries on a real `postgres:16` service container and asserts row-for-row equality with DuckDB on the same fixture; the job is required, not advisory |
 | SQL window functions | deciles, cumulative shares, as-of joins | the queries are the interesting part, so they live in committed .sql files with declared output columns, not in Python strings |
-| MLflow (SQLite backend) | model registry | a retraining policy is meaningless without a record of which version served which window; the registry tags each version with its serving span and trigger, and E5 registers its label-confirmed retrains there |
+| MLflow (SQLite backend) | model registry | a retraining policy is meaningless without a record of which version served which window; the registry tags versions with serving start, span end when one is recorded, and trigger; E5 registers its label-confirmed retrains there |
 | SciPy, NumPy | power arithmetic and detector statistics | the minimum detectable drop is a bisection over the two-sample normal approximation; MMD needs a permutation null |
 | pytest, Ruff, GitHub Actions | suite, lint, CI | time-dependent tests take an injected clock; nothing in the library reads the wall clock or sleeps |
 

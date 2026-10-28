@@ -144,9 +144,9 @@ def measure_war_story() -> tuple[float, int, float]:
         day30 = next(r for r in rows if r[0] == 30)
         a = store.arrays()
         m = (a["ts_day"] >= 30) & (a["ts_day"] < 31) & (a["label_day"] <= 35.0)
-        healthy = float(np.mean(a["correct"][m]))
+        labeled_only = float(np.mean(a["correct"][m]))
         store.close()
-    return float(day30[2]), int(day30[1]), (healthy - float(day30[2])) * 100.0
+    return float(day30[2]), int(day30[1]), (labeled_only - float(day30[2])) * 100.0
 
 
 def count_default_predictions() -> int:

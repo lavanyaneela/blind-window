@@ -34,7 +34,7 @@ instead of guessing, and that refusal is the product.
 - **The registry is MLflow on SQLite** because a retraining policy means
   nothing without a record of which version served which window; versions
   carry serving-span and trigger tags, and E5 registers each of its
-  label-confirmed retrains there. The refusal's version-at-risk line comes
+  label-confirmed retrains there with its serving start and trigger. The refusal's version-at-risk line comes
   from the serving log's version_windows query, a deliberate complement.
 
 ## The numbers, and how each was measured
@@ -85,7 +85,7 @@ sample. That one became ADR-005 and the survival-estimator item in future work.
 - v0.3.0: the answer became presentable and enforced: documents written against
   the anchors, evidence rendered byte-stable, CI with the required Postgres
   parity job and the prove-the-checker step.
-- v1.0.0: the forensics pass, every finding fixed in its own commit; the
+- v1.0.0: the forensics passes, findings fixed in dedicated commits; the
   contract frozen.
 
 ## Five likely interview questions
