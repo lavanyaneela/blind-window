@@ -13,10 +13,13 @@ three detectors with different firing semantics is really three policies.
 
 Worst-feature PSI at the conventional 0.2 threshold is the default.
 
-Measured reasons, from the E1 grid and the detector tests:
+Reasons, measured where stated:
 
 - On this data shape (continuous features, mean shifts), PSI at 0.2 and KS at
-  its alpha fire on the same streams. PSI's deciles are fit on the reference
+  its critical statistic are expected to fire on the same streams; the suite
+  checks each against the same null and the same one-sd shift, and nothing
+  here measures their agreement across the full grid, so that expectation is
+  labelled as one. PSI's deciles are fit on the reference
   window once, so the production-side cost per check is a histogram, and its
   score is readable: practitioners already know what crossing 0.2 means.
 - MMD is the only one that would catch a correlation-structure change that
