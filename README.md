@@ -16,9 +16,9 @@ Three questions this answers that a monitoring dashboard does not:
 
 On the committed default stream (800 predictions per day, lognormal label delay with a median delay 21 days), a model regression beginning on day 30 is **blind for 20.5 days**: the 2 point question the operator needs answered is not answerable **until day 50.5**, and the model serves **16,261 predictions before** that date. Nothing in the monitoring stack shrinks this. It is arithmetic about labels that do not exist yet.
 
-The input-side alarm is not the answer. Across the E1 grid, worst-feature PSI shows a **correlation of -0.001** with realized accuracy loss. A stream can show a **PSI of 1.30** while losing nothing, and a stream with no detectable input movement can be **losing 4.50 points**. At a realistic **prevalence of 10%**, the alarm runs at a **precision of 20.0%** and a **recall of 50.0%**.
+The input-side alarm is not the answer. Across the E1 grid, worst-feature PSI shows a **correlation of -0.001** with realized accuracy loss. A stream can show a **PSI of 1.30** while losing nothing, and a stream with no detectable input movement can be **losing 4.50 points**. At an assumed **prevalence of 10%**, the arithmetic puts the alarm at a **precision of 20.0%** and a **recall of 50.0%**.
 
-Credibility line: **147 tests**, **98.5% line coverage**, **6 queries per dialect** executed on every run, and every figure in this document re-measured by `make verify`. Breaking any number here fails the build, and CI proves the checker by breaking one on purpose.
+Credibility line: **147 tests**, **98.5% line coverage**, **6 queries per dialect**: DuckDB executes on every verify, Postgres on every CI run against a real server, and every figure in this document is re-measured by `make verify`. Breaking any number here fails the build, and CI proves the checker by breaking one on purpose.
 
 ## Quickstart
 
@@ -49,7 +49,7 @@ The tool walks the days after onset, recounting both maturing samples, and repor
 | day 7 | **9.93 points (day 7)**, nothing smaller |
 | day 30 | **1.39 points (day 30)** |
 
-Traffic buys less than it promises: multiplying the rate 16x shrinks the **window by 4.20x**, because the delay distribution, not the volume, gates when labels exist.
+Traffic buys less than it promises: on the E2 grid at the default delay, raising the rate 16x (its lowest cell to its highest) shrinks the **window by 4.20x**, because the delay distribution, not the volume, gates when labels exist.
 
 The exposure is the headline, not the delay: the blind window is also **16,261 predictions before** the earliest verdict, every one served to a user by a model nobody can yet convict or acquit.
 
@@ -57,7 +57,7 @@ The exposure is the headline, not the delay: the blind window is also **16,261 p
 
 The simulator injects input shift and concept shift independently: a covariate move orthogonal to the concept (visible, harmless) and a concept rotation (invisible, harmful). Across the grid, the PSI score and the realized drop are unrelated (a **correlation of -0.001**). The detector **alarmed on 4 of 10 harmless streams** (the two largest shift magnitudes), and raised **0 alarms on the 6 silently harmful streams**.
 
-Priced at base rates (E4): with a **prevalence of 10%** of monitoring periods containing a real regression, and the generous assumption that half of real regressions also move the covariates, the alarm achieved a **precision of 20.0%**. Four out of five alarms point at nothing, and the action attached to an alarm is a retrain. The measured zero on silent regressions is not zero: the sample supports only "the silent catch rate is **below 22.1%**" at 95% confidence.
+Priced at base rates (E4): with a **prevalence of 10%** of monitoring periods containing a real regression, and the generous assumption that half of real regressions also move the covariates, the alarm lands at a **precision of 20.0%**. These are near-deterministic consequences of the assumed rates (every large shift fires, nothing else does), which is the point: precision here is a property of the base rate, not of the detector, and the recall is exactly the assumed co-shift share. Four out of five alarms point at nothing, and the action attached to an alarm is a retrain. The measured zero on silent regressions is not zero: the sample supports only "the silent catch rate is **below 22.1%**" at 95% confidence.
 
 ## What each retraining trigger costs (E5)
 
@@ -73,7 +73,7 @@ The uncomfortable row is the last one. The honest trigger nearly ties the broken
 
 ## The bugs the measurement found
 
-**The as-of accuracy query convicted healthy cohorts.** The first version matched labels inside `CASE WHEN p.predicted = l.y_true`, so every unlabeled row fell to the ELSE branch and counted as wrong. On the committed war-story scenario, the day-30 cohort had **only 28 labels arrived** and the broken query **reported 0.0518 accuracy**, a **55.5 point phantom** gap below the same cohort's labeled-only accuracy. Latency read as collapse, which is precisely the confusion this repository exists to remove. The fix treats unlabeled as NULL; the regression test recomputes every day from the arrays, a companion test reconstructs the broken query and asserts the detection detects it, and the collector re-measures all three figures from `fixtures/scenarios/warstory.json` on every verify. See the fix commit and `tests/test_store.py`.
+**The as-of accuracy query convicted fresh cohorts.** The first version matched labels inside `CASE WHEN p.predicted = l.y_true`, so every unlabeled row fell to the ELSE branch and counted as wrong. On the committed war-story scenario, the day-30 cohort had **only 28 labels arrived** and the broken query **reported 0.0518 accuracy**, a **55.5 point phantom** gap below the same cohort's labeled-only accuracy (the honest baseline: that cohort sat after the injected shift, so it was degraded, not collapsed). Latency read as collapse, which is precisely the confusion this repository exists to remove. The fix treats unlabeled as NULL; the regression test recomputes every day from the arrays, a companion test reconstructs the broken query and asserts the detection detects it, and the collector re-measures all three figures from `fixtures/scenarios/warstory.json` on every verify. See the fix commit and `tests/test_store.py`.
 
 **Early labels are not a sample, they are a selection.** With label delay coupled to case difficulty (E3b), the day 7 labeled accuracy for the post-onset cohort reads **11.93 points too high**, because easy cases return first and easy cases are the ones the model gets right. The bias exists before any test is run and no sample size fixes it. ADR-005 carries the boundary.
 
