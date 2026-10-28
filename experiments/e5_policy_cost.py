@@ -7,7 +7,8 @@ it, and the count of registered versions is recorded in the output.
 
 Sixty streams: real regressions at staggered onsets (half of them also moving
 the covariates, E4's co-shift assumption), harmless shifts, and clean weeks,
-at a higher harm density than E4 so each policy meets enough incidents. Each policy sees identical streams and only day-by-day observable data.
+at a higher harm density than E4 so each policy meets enough incidents.
+Each policy sees identical streams and only day-by-day observable data.
 Costs: predictions served while degraded (missed harm) and retrains fired with
 no regression to fix (wasted). The retrain itself is a best case for every
 policy (ADR-004), so the differences below belong to the triggers.
