@@ -3,7 +3,7 @@
 All notable changes to this project are documented here. The format follows
 Keep a Changelog; versions are annotated git tags.
 
-## [Unreleased]
+## [1.0.0]
 
 ### Changed
 - KS readings now carry the critical statistic as their threshold, so all
