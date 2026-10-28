@@ -191,3 +191,16 @@ def test_the_duration_sweep_flags_milliseconds_in_prose(tmp_path):
     assert check_durations.DURATION.search("about 2 seconds of work")
     assert not check_durations.DURATION.search("blind for 20.5 days")
     assert not check_durations.DURATION.search("a secondary concern")
+
+
+def test_floor_applies_to_integer_renders_and_ceil_to_upper_bounds():
+    metrics_spec.METRICS["_fi"] = {"fmt": "{:,d}", "round": "floor", "anchors": []}
+    metrics_spec.METRICS["_cu"] = {"fmt": "{:.1f}", "round": "ceil", "anchors": []}
+    metrics_spec.METRICS["_ci"] = {"fmt": "{:d}", "round": "ceil", "anchors": []}
+    try:
+        assert metrics_spec.render("_fi", 1305.993) == "1,305"
+        assert metrics_spec.render("_cu", 22.001) == "22.1"
+        assert metrics_spec.render("_ci", 41.2) == "42"
+    finally:
+        for k in ("_fi", "_cu", "_ci"):
+            del metrics_spec.METRICS[k]

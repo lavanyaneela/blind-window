@@ -141,3 +141,9 @@ def test_labeled_fraction_counts_arrived_labels_only(harm_stream):
     s = harm_stream
     frac = labeled_fraction(s.ts_day, s.label_day, onset_day=10, asof_day=15)
     assert 0.0 < frac < 1.0
+
+
+def test_ks_fires_on_a_one_sd_mean_shift():
+    r = _rng(20)
+    reading = ks(r.standard_normal(3000), r.standard_normal(3000) + 1.0)
+    assert reading.fired and reading.score > reading.threshold
