@@ -3,10 +3,14 @@
 All notable changes to this project are documented here. The format follows
 Keep a Changelog; versions are annotated git tags.
 
-## [1.0.0]
+## [Unreleased]
 
 ### Fixed
-- Findings from the forensics audit, each in its own commit.
+- Forensics audit pass 1: a fractional as-of leaked labels and predictions
+  from the remainder of its own day into both exposure queries (clamped in
+  both dialects, pinned by a regression test); the CI count-equality step
+  counted zero collected tests under doubled quietness and failed by
+  construction.
 
 ## [0.3.0]
 

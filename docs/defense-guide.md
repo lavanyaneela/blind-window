@@ -75,7 +75,8 @@ sample. That one became ADR-005 and the survival-estimator item in future work.
 - v0.3.0: the answer became presentable and enforced: documents written against
   the anchors, evidence rendered byte-stable, CI with the required Postgres
   parity job and the prove-the-checker step.
-- v1.0.0: audit fixes from the forensics pass; the contract frozen.
+- v1.0.0: the forensics pass, every finding fixed in its own commit; the
+  contract frozen.
 
 ## Five likely interview questions
 
