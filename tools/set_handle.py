@@ -28,6 +28,8 @@ def main(handle: str) -> int:
     ).stdout.splitlines()
     changed = 0
     for rel in files:
+        if rel == "tools/set_handle.py":
+            continue  # the tool must not rewrite its own placeholder constant
         p = ROOT / rel
         try:
             text = p.read_text()

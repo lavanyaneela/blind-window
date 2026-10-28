@@ -1,4 +1,4 @@
-$ blind-window report --db runs/demo.duckdb --asof-day 44 --drop 2
+$ blind-window report --db runs/evidence.duckdb --asof-day 44 --drop 2
 as of day 44 (onset day 30): inside the blind window: the labeled sample cannot confirm the target drop
 labeled post-onset: 1211; smallest confirmable drop: 3.13 points
 day  served  labeled  share

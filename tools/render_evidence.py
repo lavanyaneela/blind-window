@@ -78,7 +78,8 @@ def main() -> int:
         code = cli_main(["report", "--db", str(db), "--asof-day", str(ASOF),
                          "--drop", str(DROP)])
     header = (
-        f"$ blind-window report --db runs/demo.duckdb --asof-day {ASOF:g} --drop {DROP:g}\n"
+        f"$ blind-window report --db {db.relative_to(ROOT)} "
+        f"--asof-day {ASOF:g} --drop {DROP:g}\n"
     )
     footer = f"\n[exit code {code}]\n"
     (EVIDENCE / "report-day44.txt").write_text(header + buf.getvalue() + footer)

@@ -27,6 +27,10 @@ dev = [
     "mlflow>=2.14",
 ]
 
+[project.urls]
+Homepage = "https://github.com/GITHUB_USERNAME/blind-window"
+Issues = "https://github.com/GITHUB_USERNAME/blind-window/issues"
+
 [project.scripts]
 blind-window = "blind_window.cli:main"
 

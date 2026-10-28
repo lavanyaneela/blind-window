@@ -25,6 +25,7 @@ Credibility line: **147 tests**, **98.5% line coverage**, **6 queries per dialec
 Prerequisites: Python 3.11 or newer.
 
 ```bash
+git clone https://github.com/GITHUB_USERNAME/blind-window.git && cd blind-window
 pip install -e ".[dev]"
 make demo      # simulates the default stream, asks on day 44, prints the refusal
 make verify    # lint + tests + experiments + receipts, offline, no network
