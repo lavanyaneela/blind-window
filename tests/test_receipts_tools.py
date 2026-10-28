@@ -91,7 +91,7 @@ def _run_checker(monkeypatch, root: Path) -> int:
     return check_numbers.main()
 
 
-EXEMPT_LINE = "alpha 0.05, power 0.80, psi 0.2, floor 95, horizon 100, exits 0 and 1 and 3.\n"
+EXEMPT_LINE = "alpha 0.05, power 0.80, psi 0.2, floor 95, horizon 100, day 7, exits 0 and 1 and 3.\n"
 
 
 def test_the_checker_passes_a_document_whose_figures_match(tmp_path, monkeypatch, capsys):
@@ -118,7 +118,7 @@ def test_the_checker_fails_a_stale_anchored_figure(tmp_path, monkeypatch, capsys
 def test_the_checker_fails_an_unguarded_number_in_prose(tmp_path, monkeypatch, capsys):
     root = _mini_repo(
         tmp_path,
-        "We saw 42 tests pass and 7 dragons.\n" + EXEMPT_LINE,
+        "We saw 42 tests pass and 9 dragons.\n" + EXEMPT_LINE,
         {"tests_total": "42"},
         {"tests_total": ["{} tests"]},
     )
@@ -153,7 +153,7 @@ def test_the_checker_fails_a_missing_checked_document(tmp_path, monkeypatch, cap
 def test_an_unused_exemption_fails_the_build(tmp_path, monkeypatch, capsys):
     root = _mini_repo(
         tmp_path,
-        "We saw 42 tests. alpha 0.05, power 0.80, psi 0.2, floor 95, exits 0 and 1 and 3.\n",
+        "We saw 42 tests. alpha 0.05, power 0.80, psi 0.2, floor 95, day 7, exits 0 and 1 and 3.\n",
         {"tests_total": "42"},
         {"tests_total": ["{} tests"]},
     )

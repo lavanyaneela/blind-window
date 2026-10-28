@@ -38,7 +38,7 @@ METRICS: dict[str, dict] = {
         "anchors": ["a {} point drop", "the {} point question", "{} point target"],
     },
     "n_predictions_default": {
-        "fmt": "{:d}", "round": "nearest", "anchors": ["{} predictions over"],
+        "fmt": "{:,d}", "round": "nearest", "anchors": ["{} predictions over"],
     },
     # E2: the headline
     "blind_window_days": {
@@ -151,6 +151,7 @@ EXEMPT_NUMBERS = (
     "95",     # the coverage floor CI enforces, a policy not a measurement
     "100",    # the E5 horizon in days, a design input
     "0",      # exit code zero, referenced in prose next to its meaning
+    "7",      # the day-7 label of the E3 checkpoints, a design input
     "1",      # exit code one, same
     "3",      # exit code three, same
 )
