@@ -4,7 +4,8 @@
 SELECT
     FLOOR(p.ts_day)::integer AS prediction_day,
     COUNT(l.request_id) AS n_labeled,
-    AVG(CASE WHEN p.predicted = l.y_true THEN 1.0 ELSE 0.0 END) AS accuracy
+    AVG(CASE WHEN l.request_id IS NULL THEN NULL
+             WHEN p.predicted = l.y_true THEN 1.0 ELSE 0.0 END) AS accuracy
 FROM predictions p
 LEFT JOIN labels l
     ON p.request_id = l.request_id AND l.label_day <= %(asof)s
