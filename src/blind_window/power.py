@@ -59,14 +59,15 @@ def min_detectable_drop(
     def achievable(drop: float) -> bool:
         p1 = p0 - drop
         if p1 <= 0:
+            # Accuracy cannot fall below zero, so a drop of the full baseline
+            # is always "detectable"; this is the cap the bisection converges
+            # toward when the sample supports nothing smaller.
             return True
         se_null = np.sqrt(p0 * (1 - p0) * (1 / n_baseline + 1 / n_post))
         se_alt = np.sqrt(p0 * (1 - p0) / n_baseline + p1 * (1 - p1) / n_post)
         return drop >= z_a * se_null + z_b * se_alt
 
     lo, hi = 0.0, p0
-    if not achievable(hi):
-        return 100.0 * p0  # nothing below "accuracy hits zero" is confirmable
     for _ in range(80):
         mid = 0.5 * (lo + hi)
         if achievable(mid):
