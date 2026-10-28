@@ -1,5 +1,10 @@
 """E5: which retraining trigger costs least, in the units an operator pays?
 
+Every label-confirmed retrain is also registered in an MLflow registry
+(SQLite, in a scratch directory) with its serving start and trigger reason,
+so the registry claim in ADR-004 is exercised by the experiment that makes
+it, and the count of registered versions is recorded in the output.
+
 Sixty streams: real regressions at staggered onsets (half of them also moving
 the covariates), harmless shifts, and clean weeks, in the same proportions as
 E4. Each policy sees identical streams and only day-by-day observable data.
@@ -11,6 +16,7 @@ policy (ADR-004), so the differences below belong to the triggers.
 from __future__ import annotations
 
 import json
+import tempfile
 
 import numpy as np
 from common import build, write
@@ -79,21 +85,33 @@ def run() -> dict:
         "label_confirmed": {"exposed": 0, "wasted": 0, "retrains": 0, "harm_missed_entirely": 0},
     }
     n_harm_streams = 0
-    for sc in _streams():
-        s = generate(sc)
-        is_harm = s.meta["concept_onset_day"] is not None
-        n_harm_streams += int(is_harm)
-        for out in (
-            drift_triggered(s),
-            scheduled(s, SCHEDULE_DAYS),
-            label_confirmed(s, TARGET_DROP_PTS, op),
-        ):
-            key = out.policy
-            totals[key]["exposed"] += out.exposed_predictions
-            totals[key]["wasted"] += out.wasted_retrains
-            totals[key]["retrains"] += out.n_retrains
-            if is_harm and out.harm_end_day is None:
-                totals[key]["harm_missed_entirely"] += 1
+    registered = 0
+    from blind_window.registry import Registry
+
+    with tempfile.TemporaryDirectory() as reg_dir:
+        registry = Registry(reg_dir)
+        for sc in _streams():
+            s = generate(sc)
+            is_harm = s.meta["concept_onset_day"] is not None
+            n_harm_streams += int(is_harm)
+            for out in (
+                drift_triggered(s),
+                scheduled(s, SCHEDULE_DAYS),
+                label_confirmed(s, TARGET_DROP_PTS, op),
+            ):
+                key = out.policy
+                totals[key]["exposed"] += out.exposed_predictions
+                totals[key]["wasted"] += out.wasted_retrains
+                totals[key]["retrains"] += out.n_retrains
+                if is_harm and out.harm_end_day is None:
+                    totals[key]["harm_missed_entirely"] += 1
+                if key == "label_confirmed":
+                    for day in out.retrain_days:
+                        registry.record_version(
+                            day, f"label_confirmed retrain, stream {sc.name}"
+                        )
+                        registered += 1
+        registered_in_registry = len(registry.versions())
 
     payload = {
         "design": {
@@ -109,6 +127,12 @@ def run() -> dict:
         "measurements": {k: dict(v) for k, v in totals.items()},
     }
     payload["measurements"]["n_harm_streams"] = n_harm_streams
+    payload["measurements"]["label_confirmed_retrains_registered"] = registered
+    if registered != registered_in_registry:
+        raise RuntimeError(
+            f"registered {registered} retrains but the registry lists "
+            f"{registered_in_registry}"
+        )
     write("e5_policy_cost.json", payload)
     return payload
 

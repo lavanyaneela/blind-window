@@ -50,8 +50,10 @@ site-specific price.
 
 - The CLI's exit code 0 is the trigger: "regression confirmed" is the signal a
   label-confirmed retrain consumes. Exit code 2 is the tax notice.
-- The registry records which trigger caused each version, so a quarter of
-  operations can be audited in the same units E5 uses.
+- E5 registers every label-confirmed retrain in the MLflow registry with its
+  serving start and trigger tag, so the quarter it simulates can be audited
+  in the registry's own terms. The CLI's version-at-risk line reads the
+  serving log, not the registry; the two are complements, not one feature.
 - If the simulator ever gains regressions that also move covariates by default,
   the drift trigger's numbers improve and this ADR must be re-run; the grid
   already contains that case at half weight, which is where its measured recall

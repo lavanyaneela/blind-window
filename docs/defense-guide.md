@@ -32,8 +32,10 @@ instead of guessing, and that refusal is the product.
   Power gates the right to answer (that gate is exit code 2), alpha gates the
   answer, defaults alpha 0.05 and power 0.80, both flags.
 - **The registry is MLflow on SQLite** because a retraining policy means
-  nothing without a record of which version served which window; versions carry
-  serving-span and trigger tags, and the refusal names the version at risk.
+  nothing without a record of which version served which window; versions
+  carry serving-span and trigger tags, and E5 registers each of its
+  label-confirmed retrains there. The refusal's version-at-risk line comes
+  from the serving log's version_windows query, a deliberate complement.
 
 ## The numbers, and how each was measured
 

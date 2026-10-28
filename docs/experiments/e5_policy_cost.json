@@ -22,6 +22,7 @@
       "retrains": 30,
       "wasted": 0
     },
+    "label_confirmed_retrains_registered": 30,
     "n_harm_streams": 30,
     "scheduled_30d": {
       "exposed": 187258,
