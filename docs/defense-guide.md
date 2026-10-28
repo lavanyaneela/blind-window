@@ -61,6 +61,15 @@ reconstructs the broken query and asserts the first test's check actually fails
 against it, because a regression test that cannot fail proves nothing. The fix
 is its own commit, and the three figures are re-measured on every verify.
 
+One reconciliation to know cold: the fix commit's message, written in the
+moment, says "a 72 point phantom" against the pre-onset baseline and eyeballs
+the cohort at roughly three hundred rows. The measured, receipts-guarded
+figures use the same cohort's own labeled-only accuracy as the denominator,
+which is the honest comparison, and the commit message stays as written
+because history here is never rewritten. If a reviewer diffs the two, that is
+the answer: different denominator, same bug, and the enforced numbers are the
+measured ones.
+
 Second story if asked for another: with delay coupled to difficulty, day 7
 accuracy reads **11.93 points too high**. Early labels are a selection, not a
 sample. That one became ADR-005 and the survival-estimator item in future work.
