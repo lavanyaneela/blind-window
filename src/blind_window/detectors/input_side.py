@@ -18,7 +18,7 @@ from scipy import stats
 PSI_BINS = 10
 PSI_FIRE_THRESHOLD = 0.2  # the conventional "significant shift" line
 KS_ALPHA = 0.01
-MMD_PERMUTATIONS = 200
+MMD_PERMUTATIONS = 1000  # the 0.99 null quantile needs tail mass behind it
 
 
 class DetectorError(ValueError):
@@ -60,12 +60,19 @@ def psi(reference: np.ndarray, window: np.ndarray) -> DetectorReading:
 
 
 def ks(reference: np.ndarray, window: np.ndarray) -> DetectorReading:
-    """Two-sample Kolmogorov-Smirnov on one feature; fires on the p-value."""
+    """Two-sample Kolmogorov-Smirnov on one feature.
+
+    The reading keeps one semantics across the battery: score is the statistic
+    and threshold is the critical statistic at KS_ALPHA (asymptotic), so
+    fired means score above threshold for all three detectors.
+    """
     _check(reference, window)
     if reference.ndim != 1:
         raise DetectorError("ks is a per-feature statistic; pass one column")
     res = stats.ks_2samp(reference, window, method="asymp")
-    return DetectorReading("ks", float(res.statistic), KS_ALPHA, bool(res.pvalue < KS_ALPHA))
+    n, m_ = reference.shape[0], window.shape[0]
+    critical = float(np.sqrt(-np.log(KS_ALPHA / 2) / 2) * np.sqrt((n + m_) / (n * m_)))
+    return DetectorReading("ks", float(res.statistic), critical, float(res.statistic) > critical)
 
 
 def mmd(
@@ -77,8 +84,10 @@ def mmd(
     """Multivariate maximum mean discrepancy with an RBF kernel.
 
     Bandwidth by the median heuristic on the pooled sample; the firing
-    threshold is the 99th percentile of a permutation null, so the score and
-    its threshold come from the same data. Subsampling keeps the quadratic
+    threshold is the 0.99 quantile of a permutation null with enough
+    permutations that the quantile has tail mass behind it, so the score and
+    its threshold come from the same data and the threshold's resolution is
+    one part in the permutation count. Subsampling keeps the quadratic
     kernel affordable; the subsample is drawn from the caller's rng so a run
     is reproducible end to end.
     """
