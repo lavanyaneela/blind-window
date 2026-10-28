@@ -17,7 +17,7 @@ Reasons, measured where stated:
 
 - On this data shape (continuous features, mean shifts), PSI at 0.2 and KS at
   its critical statistic are expected to fire on the same streams; the suite
-  checks each against the same null and asserts each fires on the same one-sd
+  checks each against the same null and asserts each fires on a one-sd
   mean shift, and nothing here measures their agreement across the full E1
   grid, so the same-streams claim is labelled an expectation. PSI's deciles are fit on the reference
   window once, so the production-side cost per check is a histogram, and its

@@ -40,7 +40,7 @@ PARAMS = {
     "label_latency_deciles": {"asof": 35.0},
     "blind_exposure": {"onset": 15.0, "asof": 34.5},
     "version_windows": {"asof": 35.0},
-    "maturity_curve": {"cohort_start": 0.0, "cohort_end": 10.0, "asof": 34.5},
+    "maturity_curve": {"cohort_start": 0.0, "cohort_end": 10.0, "asof": 8.5},
 }
 
 

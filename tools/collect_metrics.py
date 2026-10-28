@@ -123,8 +123,12 @@ def measure_war_story() -> tuple[float, int, float]:
     """Re-measure the as-of accuracy bug on its committed scenario: load the
     war-story stream, run the RECONSTRUCTED broken query (label match inside
     the CASE) at the day it was caught, and read the day-30 cohort row. The
-    phantom drop is the healthy labeled-only accuracy minus what the broken
-    query reported. The numbers in the fix commit are thereby re-measurable."""
+    phantom drop published here is the cohort's labeled-only accuracy minus
+    what the broken query reported. The fix commit's contemporaneous message
+    used rougher figures (an eyeballed cohort size and the pre-onset baseline
+    as its denominator); history is immutable, so the measured values in
+    metrics.json are the authoritative ones and the defense guide reconciles
+    the two."""
     import tempfile
 
     import numpy as np

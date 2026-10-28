@@ -143,7 +143,10 @@ def test_labeled_fraction_counts_arrived_labels_only(harm_stream):
     assert 0.0 < frac < 1.0
 
 
-def test_ks_fires_on_a_one_sd_mean_shift():
+def test_ks_fires_on_a_one_sd_mean_shift_against_its_critical_statistic():
     r = _rng(20)
-    reading = ks(r.standard_normal(3000), r.standard_normal(3000) + 1.0)
+    n = 3000
+    reading = ks(r.standard_normal(n), r.standard_normal(n) + 1.0)
     assert reading.fired and reading.score > reading.threshold
+    critical = np.sqrt(-np.log(0.01 / 2) / 2) * np.sqrt((n + n) / (n * n))
+    assert reading.threshold == pytest.approx(critical)

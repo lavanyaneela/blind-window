@@ -14,11 +14,12 @@ Keep a Changelog; versions are annotated git tags.
 - Published minima floor on integer renders too, and bounds stated as "below"
   round up; the E5 exchange rate therefore corrected downward by one.
 - E5 registers every label-confirmed retrain in the MLflow registry with its
-  serving start and trigger, and cross-checks the registry's listing.
+  serving start and trigger, and cross-checks the registry's listing. A
+  positive-firing KS test pins the firing and the critical-statistic formula.
 
 ### Fixed
 - Forensics audit pass 1: a fractional as-of leaked labels and predictions
-  from the remainder of its own day into both exposure queries (clamped in
+  from the remainder of its own day into both as-of queries (clamped in
   both dialects, pinned by a regression test); the CI count-equality step
   counted zero collected tests under doubled quietness and failed by
   construction; the dead zero-floor guard left the bisection; documents

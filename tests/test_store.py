@@ -136,7 +136,7 @@ def test_windowed_accuracy_asof_leaves_unlabeled_days_null(store):
 def test_the_asof_accuracy_bug_the_fix_commit_describes_is_really_gone(store):
     """War story: the original query put the label match inside
     CASE WHEN p.predicted = l.y_true, so every unlabeled row fell to ELSE 0.0
-    and a healthy fresh cohort reported accuracy near zero. The fixed query
+    and a fresh cohort reported accuracy near zero. The fixed query
     must agree with a labeled-only recomputation."""
     _, rows = store.run("windowed_accuracy_asof", {"asof": 20.0})
     arrays = store.arrays()
