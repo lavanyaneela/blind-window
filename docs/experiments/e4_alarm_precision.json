@@ -1,0 +1,29 @@
+{
+  "design": {
+    "alarm": "worst-feature PSI >= 0.2, weekly window vs launch reference",
+    "n_periods": 240,
+    "prevalence_true_regression_pct": 10.0,
+    "share_of_regressions_also_shifting_inputs": 0.5
+  },
+  "measurements": {
+    "alarm_precision_pct": 20.0,
+    "alarm_recall_on_regressions_pct": 50.0,
+    "alarms_by_kind": {
+      "clean": 0,
+      "harm_silent": 0,
+      "harm_with_shift": 12,
+      "harmless_shift": 48
+    },
+    "alarms_on_real_regressions": 12,
+    "alarms_total": 60,
+    "clean_false_alarm_rate_upper_pct": 1.7673695050846177,
+    "periods_by_kind": {
+      "clean": 168,
+      "harm_silent": 12,
+      "harm_with_shift": 12,
+      "harmless_shift": 48
+    },
+    "periods_needed_to_certify_half_catch": 5,
+    "silent_harm_alarm_rate_upper_pct": 22.092219194555586
+  }
+}

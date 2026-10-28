@@ -1,0 +1,22 @@
+{
+  "design": {
+    "check_days": [
+      1.0,
+      7.0,
+      30.0
+    ],
+    "coupling_strength": 1.2,
+    "operating_point": {
+      "alpha": 0.05,
+      "power": 0.8
+    }
+  },
+  "measurements": {
+    "early_label_bias_coupled_pts": 11.933954995690254,
+    "early_label_bias_uncoupled_pts": 4.571921615002061,
+    "mdd_day1_pts": null,
+    "mdd_day30_pts": 1.3945744063971408,
+    "mdd_day7_pts": 9.93773719049664,
+    "n_early_labeled_coupled_day7": 186
+  }
+}

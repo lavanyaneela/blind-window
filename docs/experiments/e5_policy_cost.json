@@ -1,0 +1,33 @@
+{
+  "design": {
+    "harm_with_shift": 15,
+    "n_clean": 15,
+    "n_harm": 30,
+    "n_harmless_shift": 15,
+    "n_streams": 60,
+    "retrain_model": "best case: realigns with the current concept on the retrain day",
+    "schedule_days": 30.0,
+    "target_drop_pts": 2.0
+  },
+  "measurements": {
+    "drift_triggered": {
+      "exposed": 397464,
+      "harm_missed_entirely": 15,
+      "retrains": 30,
+      "wasted": 15
+    },
+    "label_confirmed": {
+      "exposed": 383157,
+      "harm_missed_entirely": 0,
+      "retrains": 30,
+      "wasted": 0
+    },
+    "n_harm_streams": 30,
+    "scheduled_30d": {
+      "exposed": 187258,
+      "harm_missed_entirely": 0,
+      "retrains": 180,
+      "wasted": 150
+    }
+  }
+}

@@ -1,0 +1,138 @@
+{
+  "cells": [
+    {
+      "answerable": true,
+      "blind_days": 28.0,
+      "median_delay_days": 3.0,
+      "predictions_in_window": 5635,
+      "rate_per_day": 200.0
+    },
+    {
+      "answerable": true,
+      "blind_days": 7.5,
+      "median_delay_days": 3.0,
+      "predictions_in_window": 6043,
+      "rate_per_day": 800.0
+    },
+    {
+      "answerable": true,
+      "blind_days": 3.5,
+      "median_delay_days": 3.0,
+      "predictions_in_window": 11251,
+      "rate_per_day": 3200.0
+    },
+    {
+      "answerable": true,
+      "blind_days": 33.0,
+      "median_delay_days": 7.0,
+      "predictions_in_window": 6599,
+      "rate_per_day": 200.0
+    },
+    {
+      "answerable": true,
+      "blind_days": 11.0,
+      "median_delay_days": 7.0,
+      "predictions_in_window": 8933,
+      "rate_per_day": 800.0
+    },
+    {
+      "answerable": true,
+      "blind_days": 6.0,
+      "median_delay_days": 7.0,
+      "predictions_in_window": 19329,
+      "rate_per_day": 3200.0
+    },
+    {
+      "answerable": true,
+      "blind_days": 42.5,
+      "median_delay_days": 14.0,
+      "predictions_in_window": 8506,
+      "rate_per_day": 200.0
+    },
+    {
+      "answerable": true,
+      "blind_days": 16.0,
+      "median_delay_days": 14.0,
+      "predictions_in_window": 12951,
+      "rate_per_day": 800.0
+    },
+    {
+      "answerable": true,
+      "blind_days": 9.0,
+      "median_delay_days": 14.0,
+      "predictions_in_window": 28925,
+      "rate_per_day": 3200.0
+    },
+    {
+      "answerable": true,
+      "blind_days": 50.5,
+      "median_delay_days": 21.0,
+      "predictions_in_window": 10137,
+      "rate_per_day": 200.0
+    },
+    {
+      "answerable": true,
+      "blind_days": 20.5,
+      "median_delay_days": 21.0,
+      "predictions_in_window": 16581,
+      "rate_per_day": 800.0
+    },
+    {
+      "answerable": true,
+      "blind_days": 12.0,
+      "median_delay_days": 21.0,
+      "predictions_in_window": 38640,
+      "rate_per_day": 3200.0
+    },
+    {
+      "answerable": true,
+      "blind_days": 61.5,
+      "median_delay_days": 35.0,
+      "predictions_in_window": 12408,
+      "rate_per_day": 200.0
+    },
+    {
+      "answerable": true,
+      "blind_days": 28.0,
+      "median_delay_days": 35.0,
+      "predictions_in_window": 22531,
+      "rate_per_day": 800.0
+    },
+    {
+      "answerable": true,
+      "blind_days": 16.5,
+      "median_delay_days": 35.0,
+      "predictions_in_window": 53121,
+      "rate_per_day": 3200.0
+    }
+  ],
+  "design": {
+    "median_delays": [
+      3.0,
+      7.0,
+      14.0,
+      21.0,
+      35.0
+    ],
+    "operating_point": {
+      "alpha": 0.05,
+      "power": 0.8
+    },
+    "rates": [
+      200.0,
+      800.0,
+      3200.0
+    ],
+    "target_drop_pts": 2.0
+  },
+  "measurements": {
+    "default_answerable_day": 50.5,
+    "default_blind_days": 20.5,
+    "default_blind_predictions": 16261,
+    "default_median_delay_days": 21,
+    "default_rate_per_day": 800.0,
+    "max_blind_days_on_grid": 61.5,
+    "min_blind_days_on_grid": 3.5,
+    "rate_16x_shrinks_window_by": 4.208333333333333
+  }
+}

@@ -1,0 +1,356 @@
+{
+  "design": {
+    "drops_pts": [
+      0.0,
+      1.0,
+      2.0,
+      4.0
+    ],
+    "input_mags": [
+      0.0,
+      0.25,
+      0.5,
+      1.0,
+      1.5
+    ],
+    "n_streams": 40,
+    "note": "axes varied independently by design; see README E1 framing",
+    "seeds": [
+      301,
+      302
+    ]
+  },
+  "measurements": {
+    "alarms_on_harmless_streams": 4,
+    "alarms_on_silent_harm_streams": 0,
+    "max_drop_with_zero_shift_pts": 4.502253989993266,
+    "max_psi_with_zero_harm": 1.3000663174309484,
+    "n_harmless_streams": 10,
+    "n_silent_harm_streams": 6,
+    "pearson_p": 0.9930167747446754,
+    "pearson_r": -0.00142917820563066,
+    "spearman_r": -0.018993429409939658
+  },
+  "rows": [
+    {
+      "alarm_fired": false,
+      "input_mag": 0.0,
+      "measured_drop_pts": 0.37513787644769536,
+      "requested_drop_pts": 0.0,
+      "seed": 301,
+      "worst_psi": 0.004234132012948276
+    },
+    {
+      "alarm_fired": false,
+      "input_mag": 0.0,
+      "measured_drop_pts": 0.36619620864873914,
+      "requested_drop_pts": 0.0,
+      "seed": 302,
+      "worst_psi": 0.002338034737536377
+    },
+    {
+      "alarm_fired": false,
+      "input_mag": 0.0,
+      "measured_drop_pts": 1.188298569510804,
+      "requested_drop_pts": 1.0,
+      "seed": 301,
+      "worst_psi": 0.004234132012948276
+    },
+    {
+      "alarm_fired": false,
+      "input_mag": 0.0,
+      "measured_drop_pts": 1.452683028822821,
+      "requested_drop_pts": 1.0,
+      "seed": 302,
+      "worst_psi": 0.002338034737536377
+    },
+    {
+      "alarm_fired": false,
+      "input_mag": 0.0,
+      "measured_drop_pts": 2.101540578643224,
+      "requested_drop_pts": 2.0,
+      "seed": 301,
+      "worst_psi": 0.004234132012948276
+    },
+    {
+      "alarm_fired": false,
+      "input_mag": 0.0,
+      "measured_drop_pts": 2.5762091724119363,
+      "requested_drop_pts": 2.0,
+      "seed": 302,
+      "worst_psi": 0.002338034737536377
+    },
+    {
+      "alarm_fired": false,
+      "input_mag": 0.0,
+      "measured_drop_pts": 3.928024596908064,
+      "requested_drop_pts": 4.0,
+      "seed": 301,
+      "worst_psi": 0.004234132012948276
+    },
+    {
+      "alarm_fired": false,
+      "input_mag": 0.0,
+      "measured_drop_pts": 4.502253989993266,
+      "requested_drop_pts": 4.0,
+      "seed": 302,
+      "worst_psi": 0.002338034737536377
+    },
+    {
+      "alarm_fired": false,
+      "input_mag": 0.25,
+      "measured_drop_pts": 0.37513787644769536,
+      "requested_drop_pts": 0.0,
+      "seed": 301,
+      "worst_psi": 0.039233406601339574
+    },
+    {
+      "alarm_fired": false,
+      "input_mag": 0.25,
+      "measured_drop_pts": 0.36619620864873914,
+      "requested_drop_pts": 0.0,
+      "seed": 302,
+      "worst_psi": 0.03355895820500599
+    },
+    {
+      "alarm_fired": false,
+      "input_mag": 0.25,
+      "measured_drop_pts": 1.188298569510804,
+      "requested_drop_pts": 1.0,
+      "seed": 301,
+      "worst_psi": 0.039233406601339574
+    },
+    {
+      "alarm_fired": false,
+      "input_mag": 0.25,
+      "measured_drop_pts": 1.452683028822821,
+      "requested_drop_pts": 1.0,
+      "seed": 302,
+      "worst_psi": 0.03355895820500599
+    },
+    {
+      "alarm_fired": false,
+      "input_mag": 0.25,
+      "measured_drop_pts": 2.101540578643224,
+      "requested_drop_pts": 2.0,
+      "seed": 301,
+      "worst_psi": 0.039233406601339574
+    },
+    {
+      "alarm_fired": false,
+      "input_mag": 0.25,
+      "measured_drop_pts": 2.5762091724119363,
+      "requested_drop_pts": 2.0,
+      "seed": 302,
+      "worst_psi": 0.03355895820500599
+    },
+    {
+      "alarm_fired": false,
+      "input_mag": 0.25,
+      "measured_drop_pts": 3.928024596908064,
+      "requested_drop_pts": 4.0,
+      "seed": 301,
+      "worst_psi": 0.039233406601339574
+    },
+    {
+      "alarm_fired": false,
+      "input_mag": 0.25,
+      "measured_drop_pts": 4.502253989993266,
+      "requested_drop_pts": 4.0,
+      "seed": 302,
+      "worst_psi": 0.03355895820500599
+    },
+    {
+      "alarm_fired": false,
+      "input_mag": 0.5,
+      "measured_drop_pts": 0.37513787644769536,
+      "requested_drop_pts": 0.0,
+      "seed": 301,
+      "worst_psi": 0.15372099022930025
+    },
+    {
+      "alarm_fired": false,
+      "input_mag": 0.5,
+      "measured_drop_pts": 0.36619620864873914,
+      "requested_drop_pts": 0.0,
+      "seed": 302,
+      "worst_psi": 0.14300605136197753
+    },
+    {
+      "alarm_fired": false,
+      "input_mag": 0.5,
+      "measured_drop_pts": 1.188298569510804,
+      "requested_drop_pts": 1.0,
+      "seed": 301,
+      "worst_psi": 0.15372099022930025
+    },
+    {
+      "alarm_fired": false,
+      "input_mag": 0.5,
+      "measured_drop_pts": 1.452683028822821,
+      "requested_drop_pts": 1.0,
+      "seed": 302,
+      "worst_psi": 0.14300605136197753
+    },
+    {
+      "alarm_fired": false,
+      "input_mag": 0.5,
+      "measured_drop_pts": 2.101540578643224,
+      "requested_drop_pts": 2.0,
+      "seed": 301,
+      "worst_psi": 0.15372099022930025
+    },
+    {
+      "alarm_fired": false,
+      "input_mag": 0.5,
+      "measured_drop_pts": 2.5762091724119363,
+      "requested_drop_pts": 2.0,
+      "seed": 302,
+      "worst_psi": 0.14300605136197753
+    },
+    {
+      "alarm_fired": false,
+      "input_mag": 0.5,
+      "measured_drop_pts": 3.928024596908064,
+      "requested_drop_pts": 4.0,
+      "seed": 301,
+      "worst_psi": 0.15372099022930025
+    },
+    {
+      "alarm_fired": false,
+      "input_mag": 0.5,
+      "measured_drop_pts": 4.502253989993266,
+      "requested_drop_pts": 4.0,
+      "seed": 302,
+      "worst_psi": 0.14300605136197753
+    },
+    {
+      "alarm_fired": true,
+      "input_mag": 1.0,
+      "measured_drop_pts": 0.37513787644769536,
+      "requested_drop_pts": 0.0,
+      "seed": 301,
+      "worst_psi": 0.590592852846828
+    },
+    {
+      "alarm_fired": true,
+      "input_mag": 1.0,
+      "measured_drop_pts": 0.36619620864873914,
+      "requested_drop_pts": 0.0,
+      "seed": 302,
+      "worst_psi": 0.5755622843581201
+    },
+    {
+      "alarm_fired": true,
+      "input_mag": 1.0,
+      "measured_drop_pts": 1.188298569510804,
+      "requested_drop_pts": 1.0,
+      "seed": 301,
+      "worst_psi": 0.590592852846828
+    },
+    {
+      "alarm_fired": true,
+      "input_mag": 1.0,
+      "measured_drop_pts": 1.452683028822821,
+      "requested_drop_pts": 1.0,
+      "seed": 302,
+      "worst_psi": 0.5755622843581201
+    },
+    {
+      "alarm_fired": true,
+      "input_mag": 1.0,
+      "measured_drop_pts": 2.101540578643224,
+      "requested_drop_pts": 2.0,
+      "seed": 301,
+      "worst_psi": 0.590592852846828
+    },
+    {
+      "alarm_fired": true,
+      "input_mag": 1.0,
+      "measured_drop_pts": 2.5762091724119363,
+      "requested_drop_pts": 2.0,
+      "seed": 302,
+      "worst_psi": 0.5755622843581201
+    },
+    {
+      "alarm_fired": true,
+      "input_mag": 1.0,
+      "measured_drop_pts": 3.928024596908064,
+      "requested_drop_pts": 4.0,
+      "seed": 301,
+      "worst_psi": 0.590592852846828
+    },
+    {
+      "alarm_fired": true,
+      "input_mag": 1.0,
+      "measured_drop_pts": 4.502253989993266,
+      "requested_drop_pts": 4.0,
+      "seed": 302,
+      "worst_psi": 0.5755622843581201
+    },
+    {
+      "alarm_fired": true,
+      "input_mag": 1.5,
+      "measured_drop_pts": 0.37513787644769536,
+      "requested_drop_pts": 0.0,
+      "seed": 301,
+      "worst_psi": 1.3000663174309484
+    },
+    {
+      "alarm_fired": true,
+      "input_mag": 1.5,
+      "measured_drop_pts": 0.36619620864873914,
+      "requested_drop_pts": 0.0,
+      "seed": 302,
+      "worst_psi": 1.2723410302418756
+    },
+    {
+      "alarm_fired": true,
+      "input_mag": 1.5,
+      "measured_drop_pts": 1.188298569510804,
+      "requested_drop_pts": 1.0,
+      "seed": 301,
+      "worst_psi": 1.3000663174309484
+    },
+    {
+      "alarm_fired": true,
+      "input_mag": 1.5,
+      "measured_drop_pts": 1.452683028822821,
+      "requested_drop_pts": 1.0,
+      "seed": 302,
+      "worst_psi": 1.2723410302418756
+    },
+    {
+      "alarm_fired": true,
+      "input_mag": 1.5,
+      "measured_drop_pts": 2.101540578643224,
+      "requested_drop_pts": 2.0,
+      "seed": 301,
+      "worst_psi": 1.3000663174309484
+    },
+    {
+      "alarm_fired": true,
+      "input_mag": 1.5,
+      "measured_drop_pts": 2.5762091724119363,
+      "requested_drop_pts": 2.0,
+      "seed": 302,
+      "worst_psi": 1.2723410302418756
+    },
+    {
+      "alarm_fired": true,
+      "input_mag": 1.5,
+      "measured_drop_pts": 3.928024596908064,
+      "requested_drop_pts": 4.0,
+      "seed": 301,
+      "worst_psi": 1.3000663174309484
+    },
+    {
+      "alarm_fired": true,
+      "input_mag": 1.5,
+      "measured_drop_pts": 4.502253989993266,
+      "requested_drop_pts": 4.0,
+      "seed": 302,
+      "worst_psi": 1.2723410302418756
+    }
+  ]
+}
