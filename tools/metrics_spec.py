@@ -7,9 +7,10 @@ appearing in a document; the reverse check will flag it.
 Fields per metric:
   source: where collect_metrics reads the raw value
   fmt: how the value renders in prose (the checker matches rendered strings)
-  round: "nearest" | "floor". A minimum rounds down, never to nearest: a floor
-         published as 0.990 under the words "never below" when the truth was
-         0.98957 is a lie of one in the last digit.
+  round: "nearest" | "floor" | "ceil". A minimum rounds down and an upper
+         bound rounds up, never to nearest: a floor published as 0.990 under
+         the words "never below" when the truth was 0.98957 is a lie of one
+         in the last digit, and the same holds mirrored for "below X".
   anchors: exact wordings a document must use, "{}" is the value slot. Short
          (four words or fewer) so they survive markdown line wrapping. Any one
          matching is enough.
@@ -101,7 +102,7 @@ METRICS: dict[str, dict] = {
         "fmt": "{:g}", "round": "nearest", "anchors": ["prevalence of {}%"],
     },
     "silent_catch_upper_pct": {
-        "fmt": "{:.1f}", "round": "nearest", "anchors": ["below {}%"],
+        "fmt": "{:.1f}", "round": "ceil", "anchors": ["below {}%"],
     },
     # E5
     "e5_exposed_drift": {
@@ -168,12 +169,22 @@ EXEMPT_NUMBERS = (
 
 
 def render(name: str, value: float | int) -> str:
+    import math
+
     spec = METRICS[name]
     fmt = spec["fmt"]
-    if spec["round"] == "floor" and "f" in fmt:
+    mode = spec["round"]
+    if "f" in fmt:
         decimals = int(fmt.split(".")[1][0])
         scale = 10**decimals
-        value = int(value * scale) / scale
+        if mode == "floor":
+            value = math.floor(value * scale) / scale
+        elif mode == "ceil":
+            value = math.ceil(value * scale) / scale
     if fmt.endswith("d}"):
+        if mode == "floor":
+            value = math.floor(value)
+        elif mode == "ceil":
+            value = math.ceil(value)
         value = int(round(value))
     return fmt.format(value)

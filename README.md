@@ -18,7 +18,7 @@ On the committed default stream (800 predictions per day, lognormal label delay 
 
 The input-side alarm is not the answer. Across the E1 grid, worst-feature PSI shows a **correlation of -0.001** with realized accuracy loss. A stream can show a **PSI of 1.30** while losing nothing, and a stream with no detectable input movement can be **losing 4.50 points**. At a realistic **prevalence of 10%**, the alarm runs at a **precision of 20.0%** and a **recall of 50.0%**.
 
-Credibility line: **146 tests**, **98.3% line coverage**, **6 queries per dialect** executed on every run, and every figure in this document re-measured by `make verify`. Breaking any number here fails the build, and CI proves the checker by breaking one on purpose.
+Credibility line: **147 tests**, **98.5% line coverage**, **6 queries per dialect** executed on every run, and every figure in this document re-measured by `make verify`. Breaking any number here fails the build, and CI proves the checker by breaking one on purpose.
 
 ## Quickstart
 
@@ -69,7 +69,7 @@ Three policies on identical streams over a 100 day horizon, only day-by-day obse
 | schedule | **187,258 degraded predictions (scheduled, every 30 days)** | **150 wasted retrains** | 0 |
 | label confirmed | **383,157 degraded predictions (label confirmed)** | 0 | 0 |
 
-The uncomfortable row is the last one. The honest trigger nearly ties the broken one on exposure inside this horizon, because the blind window taxes every label-confirmed decision. The difference is what happens after the horizon: the drift trigger **missed 15 of** the regressions entirely, and their exposure grows without bound. The schedule buys its lower exposure at a price with an exchange rate: **1,306 degraded predictions avoided** per wasted retrain, which is only worth paying when a retrain costs less than that many degraded answers. ADR-004 picks the default and prices the other two.
+The uncomfortable row is the last one. The honest trigger nearly ties the broken one on exposure inside this horizon, because the blind window taxes every label-confirmed decision. The difference is what happens after the horizon: the drift trigger **missed 15 of** the regressions entirely, and their exposure grows without bound. The schedule buys its lower exposure at a price with an exchange rate: **1,305 degraded predictions avoided** per wasted retrain, which is only worth paying when a retrain costs less than that many degraded answers. ADR-004 picks the default and prices the other two.
 
 ## The bugs the measurement found
 
@@ -107,7 +107,7 @@ src/blind_window/      clock, scenario, simulator, detectors, power core, store,
 sql/duckdb/ sql/postgres/   the six committed queries, one file per dialect
 experiments/           e1 to e5 plus run_all.py
 tools/                 collect_metrics, check_numbers, check_durations, prove_checker, evidence
-tests/                 146 tests named as sentences
+tests/                 147 tests named as sentences
 fixtures/scenarios/    the committed default stream
 docs/                  adr/, experiments/ (committed measurements), evidence/, metrics.json
 ```
@@ -123,7 +123,7 @@ Exit codes, and the distinction is the deliverable:
 
 `make` returns its own code for a failed recipe, so `make demo` prints the tool's exit code and returns success; branch on the `blind-window` script, not on make.
 
-`make verify` runs lint, the suite, every experiment, and the receipts: `tools/collect_metrics.py` re-measures each figure into `docs/metrics.json`, and `tools/check_numbers.py` fails the build if any document quotes a figure the code no longer produces. It matches anchor phrases rather than bare digits, so "146 tests" going stale is caught even when some other 146 appears, and it reverse-scans for numbers nothing re-measures. A coverage floor of 95 percent is enforced in CI, and `tools/check_durations.py` sweeps every tracked markdown file so no wall-clock duration is ever published as a result.
+`make verify` runs lint, the suite, every experiment, and the receipts: `tools/collect_metrics.py` re-measures each figure into `docs/metrics.json`, and `tools/check_numbers.py` fails the build if any document quotes a figure the code no longer produces. It matches anchor phrases rather than bare digits (`"{} tests"`, value substituted), so a stale count is caught even when the same digits appear elsewhere, and it reverse-scans for numbers nothing re-measures. A coverage floor of 95 percent is enforced in CI, and `tools/check_durations.py` sweeps every tracked markdown file so no wall-clock duration is ever published as a result.
 
 ## Stack
 

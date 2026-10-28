@@ -137,7 +137,7 @@
     "bug_cohort_labeled": 28,
     "bug_phantom_drop_pts": 55.53135888501741,
     "bug_reported_acc": 0.051829268292682924,
-    "coverage_line_pct": 98.38274932614556,
+    "coverage_line_pct": 98.51752021563343,
     "default_rate_per_day": 800,
     "drift_perf_correlation": -0.00142917820563066,
     "e5_exposed_drift": 397464,
@@ -160,7 +160,7 @@
     "silent_catch_upper_pct": 22.092219194555586,
     "sql_queries_per_dialect": 6,
     "target_drop_pts": 2.0,
-    "tests_total": 146,
+    "tests_total": 147,
     "true_regression_prevalence_pct": 10.0
   },
   "note": "every value produced by running the suite and the experiments; see tools/",
@@ -175,7 +175,7 @@
     "bug_cohort_labeled": "28",
     "bug_phantom_drop_pts": "55.5",
     "bug_reported_acc": "0.0518",
-    "coverage_line_pct": "98.3",
+    "coverage_line_pct": "98.5",
     "default_rate_per_day": "800",
     "drift_perf_correlation": "-0.001",
     "e5_exposed_drift": "397,464",
@@ -183,7 +183,7 @@
     "e5_exposed_scheduled": "187,258",
     "e5_missed_drift": "15",
     "e5_n_harm": "30",
-    "e5_predictions_per_retrain": "1,306",
+    "e5_predictions_per_retrain": "1,305",
     "e5_wasted_scheduled": "150",
     "early_label_bias_coupled_pts": "11.93",
     "label_delay_median_days": "21",
@@ -198,7 +198,7 @@
     "silent_catch_upper_pct": "22.1",
     "sql_queries_per_dialect": "6",
     "target_drop_pts": "2",
-    "tests_total": "146",
+    "tests_total": "147",
     "true_regression_prevalence_pct": "10"
   }
 }

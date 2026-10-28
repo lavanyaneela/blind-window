@@ -44,8 +44,8 @@ instead of guessing, and that refusal is the product.
 | **correlation of -0.001** | E1: a grid varying input magnitude and concept drop independently, two seeds per cell; worst-feature PSI against realized drop |
 | **PSI of 1.30** with zero harm, **losing 4.50 points** with zero shift | the two corners of the same grid |
 | **precision of 20.0%**, **recall of 50.0%** at a **prevalence of 10%** | E4: periods at realistic base rates, half of real regressions also move covariates (the generous assumption); silent catch rate is only bounded, **below 22.1%**, because a measured zero is a resolution floor, not a zero |
-| E5 totals and the **1,306 degraded predictions avoided** per wasted retrain | sixty streams, three policies on identical data, best-case retrains; the exchange rate is scheduled's exposure saving over label-confirmed divided by its **150 wasted retrains** |
-| **146 tests**, **98.3% line coverage** | read from the junit and coverage JSON artifacts by the collector, never from a progress line |
+| E5 totals and the **1,305 degraded predictions avoided** per wasted retrain | sixty streams, three policies on identical data, best-case retrains; the exchange rate is scheduled's exposure saving over label-confirmed divided by its **150 wasted retrains** |
+| **147 tests**, **98.5% line coverage** | read from the junit and coverage JSON artifacts by the collector, never from a progress line |
 
 ## The war story to tell
 
@@ -62,13 +62,12 @@ against it, because a regression test that cannot fail proves nothing. The fix
 is its own commit, and the three figures are re-measured on every verify.
 
 One reconciliation to know cold: the fix commit's message, written in the
-moment, says "a 72 point phantom" against the pre-onset baseline and eyeballs
-the cohort at roughly three hundred rows. The measured, receipts-guarded
-figures use the same cohort's own labeled-only accuracy as the denominator,
-which is the honest comparison, and the commit message stays as written
-because history here is never rewritten. If a reviewer diffs the two, that is
-the answer: different denominator, same bug, and the enforced numbers are the
-measured ones.
+moment, prices the gap against the pre-onset baseline and eyeballs the cohort
+size. The measured, receipts-guarded figures use the same cohort's own
+labeled-only accuracy as the denominator, which is the honest comparison, and
+the commit message stays as written because history here is never rewritten.
+If a reviewer diffs the two, that is the answer: different denominator and a
+rounder head-count, same bug, and the enforced numbers are the measured ones.
 
 Second story if asked for another: with delay coupled to difficulty, day 7
 accuracy reads **11.93 points too high**. Early labels are a selection, not a

@@ -28,7 +28,7 @@ the choice survives it:
   in-horizon number understates a policy that never fixes half the incidents.
 - The schedule beats label-confirmed on in-horizon exposure by brute force, at
   **150 wasted retrains**. The exchange rate is the decision variable:
-  **1,306 degraded predictions avoided** per wasted retrain. Where a retrain is
+  **1,305 degraded predictions avoided** per wasted retrain. Where a retrain is
   cheap (a nightly job) and a degraded prediction is expensive, buy the
   schedule; where a retrain carries review, validation and rollout cost, the
   schedule is paying full freight for mostly-empty fixes. A default must not
