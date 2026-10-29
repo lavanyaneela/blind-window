@@ -8,8 +8,11 @@ Two artifacts, both reproducible with this one script:
                                     on day 44, a refusal, which is the behaviour
                                     this repository exists to produce
 
-The SVG is byte-stable across runs (fixed hash salt, no creation date), so a
-regenerated tree stays clean and `make verify` can diff it like a fixture.
+The SVG is byte-stable across runs within one environment (fixed hash salt,
+no creation date), so re-rendering locally leaves a clean tree. Across
+environments matplotlib's glyph paths and ids differ at the same version, so
+CI byte-diffs only the transcript and checks the SVG's content with
+tools/check_svg_evidence.py.
 """
 
 from __future__ import annotations

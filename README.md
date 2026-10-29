@@ -88,7 +88,7 @@ The diagram is a committed SVG with intrinsic dimensions; edit it directly.
 
 <img src="docs/evidence/exposure-curve.svg" width="800" alt="Two cumulative curves after onset, predictions served far above labels arrived, blind window shaded">
 
-The curve is rendered by `tools/render_evidence.py` from the same SQL the CLI report prints, and the SVG is byte-stable, so CI diffs it like a fixture. The captured refusal is committed verbatim at `docs/evidence/report-day44.txt` with its exit code.
+The curve is rendered by `tools/render_evidence.py` from the same SQL the CLI report prints. Re-rendering in the same environment reproduces it byte for byte; across environments matplotlib's glyph paths differ, so CI byte-diffs the captured transcript (measurement text) and checks the SVG for the content this caption promises. The captured refusal is committed verbatim at `docs/evidence/report-day44.txt` with its exit code.
 
 ## The fixture
 

@@ -80,10 +80,16 @@ jobs:
           python tools/check_durations.py
       - name: prove the checker by breaking a figure
         run: python tools/prove_checker.py
-      - name: evidence is byte-stable
+      - name: evidence regenerates; the transcript is byte-stable, the svg content-checked
         run: |
+          # The transcript is measurement text and must reproduce byte for
+          # byte. The svg is a rendering: matplotlib glyph paths and ids vary
+          # across environments at the same version, so it is checked for the
+          # content the caption promises instead of bytes.
           python tools/render_evidence.py
-          git diff --exit-code docs/evidence
+          git diff --exit-code docs/evidence/report-day44.txt
+          python tools/check_svg_evidence.py docs/evidence/exposure-curve.svg
+          git checkout -- docs/evidence/exposure-curve.svg
       - name: the committed measurements match a fresh run
         run: git diff --exit-code docs/experiments docs/metrics.json
       - name: job summary

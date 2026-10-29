@@ -3,6 +3,15 @@
 All notable changes to this project are documented here. The format follows
 Keep a Changelog; versions are annotated git tags.
 
+## [Unreleased]
+
+### Fixed
+- The CI receipts job byte-diffed the exposure-curve SVG across environments;
+  matplotlib's glyph paths and ids vary between machines at the same version,
+  so the first real run failed on it. The transcript stays byte-diffed (it
+  reproduced exactly on CI), and the SVG is now checked for the content its
+  caption promises by `tools/check_svg_evidence.py`.
+
 ## [1.0.0]
 
 ### Changed
